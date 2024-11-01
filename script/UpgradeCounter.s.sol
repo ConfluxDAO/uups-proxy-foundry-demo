@@ -24,7 +24,10 @@ contract UpgradeCounter is Script {
         console.log("New implementation:", address(counterV2));
 
         // Upgrade proxy to new implementation
-        Counter(proxyAddress).upgradeTo(address(counterV2));
+        Counter(proxyAddress).upgradeToAndCall(
+            address(counterV2),
+            "" // 空字节串，因为我们不需要调用任何初始化函数
+        );
 
         vm.stopBroadcast();
 

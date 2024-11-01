@@ -26,7 +26,7 @@ contract UpgradeCounter is Script {
         // Upgrade proxy to new implementation
         Counter(proxyAddress).upgradeToAndCall(
             address(counterV2),
-            "" // 空字节串，因为我们不需要调用任何初始化函数
+            "" // Empty bytes string since we don't need to call any initialization function
         );
 
         vm.stopBroadcast();
@@ -60,4 +60,4 @@ contract UpgradeCounter is Script {
         console.log("1. State preserved: Initial count maintained after upgrade");
         console.log("2. New functions working: Increment and Reset successfully added");
     }
-} 
+}
